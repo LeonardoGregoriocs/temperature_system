@@ -21,7 +21,7 @@ func main() {
 
 	fmt.Println("Starting web server on port: 8080")
 
-	http.ListenAndServe(":8000", r)
+	http.ListenAndServe(":8080", r)
 }
 
 func init() {
