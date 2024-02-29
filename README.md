@@ -11,4 +11,14 @@ docker build -t temperature_system .
 ``` 
 ```bash
 docker run temperature_system 
-``` 
+```
+
+## Requisição 
+
+- Realizar uma request do tipo POST para localhost:8080/weather com o body abaixo:
+
+```json
+{
+    "cep": "xxxxxxxx"
+}
+```
