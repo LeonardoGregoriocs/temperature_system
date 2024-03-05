@@ -49,5 +49,9 @@ func GetAddressViaCep(zipcode string) (*Data, error) {
 		return &Data{}, err
 	}
 
+	if data.Localidade == "" {
+		return nil, errors.New("can not find zipcode")
+	}
+
 	return &data, nil
 }
