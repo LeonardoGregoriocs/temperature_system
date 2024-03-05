@@ -4,7 +4,7 @@ Sistema que receba um CEP, identifica a cidade e retorna o clima atual (temperat
 
 ## Execução da Aplicação
 
-Crie um arquivo na raiz do projeto com o nome *configs.json*, com o seguinte conteúdo:
+Crie um arquivo na pasta temperature_system dentro do projeto com o nome *configs.json*, com o seguinte conteúdo:
 ```json
 {
     "ApiKey": "your_api_key"
