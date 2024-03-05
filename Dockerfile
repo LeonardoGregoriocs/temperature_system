@@ -2,6 +2,8 @@ FROM golang:latest
 
 WORKDIR /app
 
+RUN go mod tidy
+
 COPY . .
 
 EXPOSE 8080
