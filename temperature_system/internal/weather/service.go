@@ -2,8 +2,10 @@ package weather
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
+	"time"
 
 	"github.com/leonardogregoriocs/temperature_system/temperature_system/internal/utils"
 	"github.com/spf13/viper"
@@ -20,9 +22,22 @@ func GetWeatherByCity(city string) (*Weather, error) {
 	}
 
 	apiKey := utils.RemoveFirstAndLast(b)
-	resp, err := http.Get("http://api.weatherapi.com/v1/current.json?key=" + apiKey + "&q=" + city + "&aqi=no")
+	URL := fmt.Sprintf("http://api.weatherapi.com/v1/current.json?key=%s&q=%s&aqi=no", apiKey, city)
 
+	fmt.Println(URL)
+	req, err := http.NewRequest("GET", URL, nil)
 	if err != nil {
+		fmt.Println("Erro ao criar a requisição:", err)
+		return &Weather{}, err
+	}
+
+	client := &http.Client{
+		Timeout: time.Second * 10,
+	}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Println("Erro ao fazer a requisição:", err)
 		return &Weather{}, err
 	}
 	defer resp.Body.Close()
