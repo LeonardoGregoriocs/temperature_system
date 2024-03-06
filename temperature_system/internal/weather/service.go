@@ -26,7 +26,6 @@ func GetWeatherByCity(city string) (*Weather, error) {
 	escapedCityName := url.QueryEscape(city)
 	URL := fmt.Sprintf("http://api.weatherapi.com/v1/current.json?key=%v&q=%v&aqi=no", apiKey, escapedCityName)
 
-	fmt.Println(URL)
 	req, err := http.NewRequest("GET", URL, nil)
 	if err != nil {
 		fmt.Println("Erro ao criar a requisição:", err)

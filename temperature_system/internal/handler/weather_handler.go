@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -31,13 +32,14 @@ func WeatherHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	dataCep, err := zipcode.GetAddressViaCep(payload.Zipcode)
+	fmt.Println(err)
 	if err != nil {
 		switch {
 		case err.Error() == "invalid zipcode":
 			http.Error(w, "invalid zipcode", http.StatusUnprocessableEntity)
 			return
 		case err.Error() == "can not find zipcode":
-			http.Error(w, "invalid zipcode", http.StatusNotFound)
+			http.Error(w, "can not find zipcode", http.StatusNotFound)
 			return
 		}
 	}
