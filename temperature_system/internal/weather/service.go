@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"time"
 
 	"github.com/leonardogregoriocs/temperature_system/temperature_system/internal/utils"
@@ -22,7 +23,8 @@ func GetWeatherByCity(city string) (*Weather, error) {
 	}
 
 	apiKey := utils.RemoveFirstAndLast(b)
-	URL := fmt.Sprintf("http://api.weatherapi.com/v1/current.json?key=%s&q=%s&aqi=no", apiKey, city)
+	escapedCityName := url.QueryEscape(city)
+	URL := fmt.Sprintf("http://api.weatherapi.com/v1/current.json?key=%v&q=%v&aqi=no", apiKey, escapedCityName)
 
 	fmt.Println(URL)
 	req, err := http.NewRequest("GET", URL, nil)

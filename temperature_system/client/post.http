@@ -2,5 +2,5 @@ POST http://localhost:8080/weather
 Content-Type: application/json
 
 {
-    "cep": "13185404"
+    "cep": "44077746"
 }
